@@ -1,0 +1,50 @@
+## numpy操作
+    # 初始化
+        np.array()
+
+    # python的**运算符和matlab .^运算符在处理uint8数据上不同
+
+    # 读取矩阵大小
+        row, column = X.shape[0], X.shape[1]
+
+    # 行向量的转置还是行向量, 需要手动转置（reshape）
+        mtx.shape = [a,]
+        mtx = mtx.reshape(1, mtx.shape[0])
+
+    # np.mean(mtx, axis)
+        axis=0, 求各列均值，返回行向量
+        axis=1, 求各行均值，返回列向量
+
+
+## scipy操作
+    # 导入.mat文件(scio)
+        from scipy import io as scio
+        """
+        return a dict which concludes {'__header__':'', '__version__':'', '__globals__":[], 'mat_name': data_array}
+        """
+        mat = scio.loadmat(mat_path)
+        mat_data = mat['mat_name']
+    # 线性代数操作 from scipy import linalg
+        linalg.det()
+        linalg.inv()
+        linalg.svd()
+
+## matlab python 运算符对应
+    matlab              python(numpy)
+    *                   dot(a,b)/a.dot(b)
+    .*                  */multiply(a, b)
+    .^                  **
+    full                (python不用扩充稀疏矩阵为满存储)
+    repmat(mtx,a,b)     tile(mtx, (a, b))           # 使用矩阵副本扩充成a*b的块矩阵
+    sqrt()              sqrt()
+    '                   .T/.H
+    max(mtxA, mtxB)     maximum(mtxA, mtxB)
+    real(A)             real(A)
+    eig(mtx,k,sigma,opts)   scipy.linalg.eig        # 返回矩阵特征值, 特征向量
+        # d = eigs(A,k,sigma)
+            sigma取值：
+            'lm' 表示绝对值最大的特征值；'sm' 绝对值最小特征值；
+            对实对称问题：
+            'la'表示最大特征值；'sa'为最小特征值；
+            对非对称和复数问题：
+            'lr' 表示最大实部；'sr' 表示 最小实部；'li' 表示最大虚部；'si'表示最小虚部

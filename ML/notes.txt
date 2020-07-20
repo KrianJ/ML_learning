@@ -1,0 +1,36 @@
+## norm.py
+# 矩阵拉伸：将矩阵拉伸成行向量
+    ravel(): 返回数组的试图
+    flatten(): 返回真实数组，需要重新分配空间
+
+# 矩阵分割：
+    np.hsplit(mtx, arg)     水平分割，arg:一般是列数
+    np.vsplit(mtx, arg)     垂直分割，arg:一般是行数
+# 矩阵组合：
+    np.hstack((a, b))
+    np.concatenate((a, b), axis=1)          # 水平组合
+    print np.vstack((a, b))
+    print np.concatenate((a, b), axis=0)    # 垂直组合
+
+list_to_ndarray:
+    np.array(list)
+    arr.tolist()
+
+
+## SVD.py
+argsort(): 将矩阵从小到大排序，并提取对应的index list
+    argsort()[::-1]: 将索引逆置
+# 按照特征值顺序对对应特征向量排序
+    1. 降序排列特征值，并得到其索引
+        eval_sorted_index = np.argsort(A)[::-1]
+    2. 利用列表表达式排序特征值
+        sorted_eval = [eval[i] for i in eval_sorted_index]
+    3. 排序对应特征向量
+        sorted_evecs = evecs[:, eval_sorted_index]
+
+## pca.py
+# 一维矩阵相乘
+    将向量都reshape成n*1和1*n的形式
+    a = a.reshape(size, 1)
+    b = a.reshape(1, size)
+    np.dot(a, b)
